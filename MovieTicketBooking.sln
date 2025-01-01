@@ -1,0 +1,67 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{32B02910-581B-4C42-B6F0-8B09D5BC0F3A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{83E9DABB-44DD-49C1-A566-F2BC10081A8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieTicketBooking.Common.Domain", "src\Common\MovieTicketBooking.Common.Domain\MovieTicketBooking.Common.Domain.csproj", "{9921DFFB-D964-452C-AF64-7B443D31F64D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieTicketBooking.WebHost", "src\MovieTicketBooking.WebHost\MovieTicketBooking.WebHost.csproj", "{F72D5804-B6CD-4A87-9A0F-0CF15896E0B8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{E27DFB0E-153B-4353-A298-EB0441B12CBB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieTicketBooking.Common.Application", "src\Common\MovieTicketBooking.Common.Application\MovieTicketBooking.Common.Application.csproj", "{4D26A39B-57C1-44D2-9A0C-715813A59F33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieTicketBooking.Common.Infrastructure", "src\Common\MovieTicketBooking.Common.Infrastructure\MovieTicketBooking.Common.Infrastructure.csproj", "{AC49D116-89CE-4230-A92A-23F769CCC04D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieTicketBooking.Common.Presentation", "src\Common\MovieTicketBooking.Common.Presentation\MovieTicketBooking.Common.Presentation.csproj", "{7463D136-31A1-4B14-8231-73FF23A63B4B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9ED63F33-B357-4ABF-B274-FB01069E1BCA}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9921DFFB-D964-452C-AF64-7B443D31F64D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9921DFFB-D964-452C-AF64-7B443D31F64D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9921DFFB-D964-452C-AF64-7B443D31F64D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9921DFFB-D964-452C-AF64-7B443D31F64D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F72D5804-B6CD-4A87-9A0F-0CF15896E0B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F72D5804-B6CD-4A87-9A0F-0CF15896E0B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F72D5804-B6CD-4A87-9A0F-0CF15896E0B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F72D5804-B6CD-4A87-9A0F-0CF15896E0B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D26A39B-57C1-44D2-9A0C-715813A59F33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D26A39B-57C1-44D2-9A0C-715813A59F33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D26A39B-57C1-44D2-9A0C-715813A59F33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D26A39B-57C1-44D2-9A0C-715813A59F33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC49D116-89CE-4230-A92A-23F769CCC04D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC49D116-89CE-4230-A92A-23F769CCC04D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC49D116-89CE-4230-A92A-23F769CCC04D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC49D116-89CE-4230-A92A-23F769CCC04D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7463D136-31A1-4B14-8231-73FF23A63B4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7463D136-31A1-4B14-8231-73FF23A63B4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7463D136-31A1-4B14-8231-73FF23A63B4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7463D136-31A1-4B14-8231-73FF23A63B4B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{83E9DABB-44DD-49C1-A566-F2BC10081A8F} = {32B02910-581B-4C42-B6F0-8B09D5BC0F3A}
+		{9921DFFB-D964-452C-AF64-7B443D31F64D} = {83E9DABB-44DD-49C1-A566-F2BC10081A8F}
+		{F72D5804-B6CD-4A87-9A0F-0CF15896E0B8} = {32B02910-581B-4C42-B6F0-8B09D5BC0F3A}
+		{E27DFB0E-153B-4353-A298-EB0441B12CBB} = {32B02910-581B-4C42-B6F0-8B09D5BC0F3A}
+		{4D26A39B-57C1-44D2-9A0C-715813A59F33} = {83E9DABB-44DD-49C1-A566-F2BC10081A8F}
+		{AC49D116-89CE-4230-A92A-23F769CCC04D} = {83E9DABB-44DD-49C1-A566-F2BC10081A8F}
+		{7463D136-31A1-4B14-8231-73FF23A63B4B} = {83E9DABB-44DD-49C1-A566-F2BC10081A8F}
+	EndGlobalSection
+EndGlobal
