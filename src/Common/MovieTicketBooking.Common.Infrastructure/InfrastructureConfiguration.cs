@@ -80,10 +80,7 @@ public static class InfrastructureConfiguration
             }
             
             configurator.SetKebabCaseEndpointNameFormatter();
-            //configurator.UsingInMemory((context, config) =>
-            //{
-            //    config.ConfigureEndpoints(context);
-            //});
+
             configurator.UsingRabbitMq((context, config) =>
             {
                 config.Host(rabbitMqConnectionString);

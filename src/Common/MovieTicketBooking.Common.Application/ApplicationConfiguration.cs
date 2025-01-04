@@ -10,6 +10,7 @@ public static class ApplicationConfiguration
         this IServiceCollection services,
         Assembly[] moduleAssemblies)
     {
+        if (!moduleAssemblies.Any()) return services;
         services.AddMediatR(config =>
         {
             config.RegisterServicesFromAssemblies(moduleAssemblies);
