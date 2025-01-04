@@ -1,7 +1,7 @@
 ﻿using MovieTicketBooking.Common.Domain;
 
 namespace MovieTicketBooking.Common.Application.Exceptions;
-internal class AppException(string requestName,
+public class AppException(string requestName,
     Error? error = default,
     Exception? innerException = default)
     : Exception("Application exception", innerException)
