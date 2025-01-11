@@ -1,6 +1,6 @@
 services:
   #customerdb: postgres
-  database:
+  movieticketbooking.database:
     container_name: movieticketbooking.database
     command: postgres -c 'max_connections=200'
     environment:
@@ -15,14 +15,14 @@ services:
       - ./init-scripts:/docker-entrypoint-initdb.d
   #infrastructure section
 
-  rabbitmq:
+  movieticketbooking.rabbitmq:
     container_name: movieticketbooking.rabbitmq
     restart: always
     ports:
       - "5672:5672"
       - "15672:15672"
 
-  pgadmin:
+  movieticketbooking.pgadmin:
     container_name: movieticketbooking.pgadmin
     environment:
       - PGADMIN_DEFAULT_EMAIL=admin@admin.com
@@ -34,7 +34,7 @@ services:
     volumes:
       - movieticketbooking_pgadmin_data:/root/.pgadmin
 
-  portainer:
+  movieticketbooking.portainer:
     container_name: movieticketbooking.portainer
     restart: always
     ports:
@@ -44,7 +44,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - movieticketbooking_portainer_data:/data
 
-  elasticsearch:
+  movieticketbooking.elasticsearch:
     container_name: movieticketbooking.elasticsearch
     environment:
       - xpack.monitoring.enabled=true
@@ -59,18 +59,18 @@ services:
     volumes:
       - movieticketbooking_elasticsearch_data:/usr/share/elasticsearch/data
 
-  kibana:
+  movieticketbooking.kibana:
     container_name: movieticketbooking.kibana
     environment:
       - ELASTICSEARCH_URL=http://elasticsearch:9200
       - ELASTICSEARCH_USERNAME=elastic
       - ELASTICSEARCH_PASSWORD=admin
     depends_on:
-      - elasticsearch
+      - movieticketbooking.elasticsearch
     ports:
       - "5601:5601"
 
-  redis:
+  movieticketbooking.redis:
     image: redis:7.4.1
     container_name: movieticketbooking.redis
     restart: always
@@ -79,7 +79,7 @@ services:
     volumes:
       - movieticketbooking_redis_data:/data
 
-  jaeger:
+  movieticketbooking.jaeger:
     image: jaegertracing/all-in-one:1.64.0
     container_name: movieticketbooking.jaeger
     ports:
@@ -87,7 +87,7 @@ services:
       - 4318:4318
       - 16686:16686
 
-  keycloak:
+  movieticketbooking.keycloak:
     image: quay.io/keycloak/keycloak:26.0
     container_name: movieticketbooking.keycloak
     command: start-dev --import-realm
@@ -113,20 +113,19 @@ services:
     volumes:
       - ./.files:/opt/keycloak/data/import
     depends_on:
-      - database
+      - movieticketbooking.database
     ports:
       - 18080:8080
       - 18081:9000
 
   #api section
-  webhost:
+  movieticketbooking.webhost:
     container_name: movieticketbooking.webhost
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80
-      - ConnectionStrings:Database=Server=database;Port=5432;Database=MovieTicketBooking;Userid=admin;Password=admin;
     depends_on:
-      - database
+      - movieticketbooking.database
     ports:
       - "5001:80"
     restart: always
