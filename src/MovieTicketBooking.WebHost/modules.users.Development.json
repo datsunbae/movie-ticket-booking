@@ -1,0 +1,19 @@
+{
+  "Users": {
+    "KeyCloak": {
+      "AdminUrl": "http://movieticketbooking.keycloak:8080/admin/realms/movieticketbooking/",
+      "TokenUrl": "http://movieticketbooking.keycloak:8080/realms/movieticketbooking/protocol/openid-connect/token",
+      "ConfidentialClientId": "movieticketbooking-confidential-client",
+      "ConfidentialClientSecret": "YcHh8QdlC6DNLYLYx37H8EIxKdw64zuL",
+      "PublicClientId": "movieticketbooking-public-client"
+    },
+    "Outbox": {
+      "IntervalInSeconds": 15,
+      "BatchSize": "20"
+    },
+    "Inbox": {
+      "IntervalInSeconds": 15,
+      "BatchSize": "20"
+    }
+  }
+}

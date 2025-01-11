@@ -37,6 +37,7 @@ public static class InfrastructureConfiguration
         var npgsqlDataSource = new NpgsqlDataSourceBuilder(databaseConnectionString).Build();
         services.TryAddSingleton(npgsqlDataSource);
 
+        Dapper.SqlMapper.AddTypeHandler(new StringUlidHandler());
         services.AddScoped<IDbConnectionFactory, DbConnectionFactory>();
         
         services.TryAddSingleton<InsertOutboxMessagesInterceptor>();

@@ -95,7 +95,7 @@ services:
       KC_HEALTH_ENABLED: true
       KC_METRICS_ENABLED: true
       KC_DB: postgres
-      KC_DB_URL_HOST: database
+      KC_DB_URL_HOST: movieticketbooking.database
       KC_DB_URL_DATABASE: MovieTicketBooking 
       KC_DB_USERNAME: admin
       KC_DB_PASSWORD: admin
@@ -122,7 +122,7 @@ services:
   movieticketbooking.webhost:
     container_name: movieticketbooking.webhost
     environment:
-      - ASPNETCORE_ENVIRONMENT=Docker
+      - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
     depends_on:
       - movieticketbooking.database

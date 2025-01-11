@@ -3,6 +3,7 @@ using MovieTicketBooking.WebHost.OpenTelemetry;
 using MovieTicketBooking.Common.Application;
 using MovieTicketBooking.Common.Infrastructure;
 using MovieTicketBooking.Common.Infrastructure.EventBus;
+using MovieTicketBooking.Modules.Users.Infrastructure;
 
 namespace MovieTicketBooking.WebHost.Extensions;
 
@@ -37,19 +38,19 @@ public static class ServiceExtensions
 
         services
             .AddApplication([
-                
+                Modules.Users.Application.AssemblyReference.Assembly,
             ])
             .AddInfrastructure(
                 DiagnosticsConfig.ServiceName,
                 [
-                   // add module infrastructure here
+                    UsersModule.ConfigureConsumers,
                 ],
                 rabbitMqConnectionString,
                 databaseConnectionString,
                 cacheConnectionString);
 
-        // add module services here
-
+        services
+            .AddUsersModule(configuration);
 
         return services;
     }

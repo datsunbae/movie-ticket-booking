@@ -19,9 +19,9 @@ builder.Services.AddSwaggerGen(options =>
 
 builder.AddLogging();
 
-//builder.Configuration.AddModuleConfiguration([
-//   // add module env here
-//]);
+builder.Configuration.AddModuleConfiguration([
+   "users",
+]);
 
 var databaseConnectionString = builder.Configuration.GetConnectionString("Database")!;
 var cacheConnectionString = builder.Configuration.GetConnectionString("Cache")!;
@@ -31,11 +31,11 @@ builder.Services
     .AddExceptionHandling()
     .AddOpenApi();
 
-//builder.Services
-//    .AddModules(
-//        builder.Configuration,
-//        databaseConnectionString,
-//        cacheConnectionString);
+builder.Services
+    .AddModules(
+        builder.Configuration,
+        databaseConnectionString,
+        cacheConnectionString);
 
 var keycloakHealthUrl = builder.Configuration.GetValue<string>("KeyCloak:HealthUrl")!;
 

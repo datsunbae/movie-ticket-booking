@@ -26,14 +26,7 @@
     <ProjectReference Include="..\Common\MovieTicketBooking.Common.Application\MovieTicketBooking.Common.Application.csproj" />
     <ProjectReference Include="..\Common\MovieTicketBooking.Common.Infrastructure\MovieTicketBooking.Common.Infrastructure.csproj" />
     <ProjectReference Include="..\Common\MovieTicketBooking.Common.Presentation\MovieTicketBooking.Common.Presentation.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Update="appsettings.Docker.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
+    <ProjectReference Include="..\Modules\Users\MovieTicketBooking.Modules.Users.Infrastructure\MovieTicketBooking.Modules.Users.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
