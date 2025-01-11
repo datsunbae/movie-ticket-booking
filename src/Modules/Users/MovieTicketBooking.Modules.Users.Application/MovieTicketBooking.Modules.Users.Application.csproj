@@ -1,0 +1,6 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\MovieTicketBooking.Common.Application\MovieTicketBooking.Common.Application.csproj" />
+    <ProjectReference Include="..\MovieTicketBooking.Modules.Users.Domain\MovieTicketBooking.Modules.Users.Domain.csproj" />
+  </ItemGroup>
+</Project>

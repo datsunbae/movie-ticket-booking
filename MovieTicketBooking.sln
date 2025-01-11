@@ -27,6 +27,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{91434ECD-02B6-45B2-B22A-3F6D1F62AB87}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Users", "Users", "{7B317624-C698-45C2-91A9-5129FB9B2C00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieTicketBooking.Modules.Users.Domain", "src\Modules\Users\MovieTicketBooking.Modules.Users.Domain\MovieTicketBooking.Modules.Users.Domain.csproj", "{9E09A64D-E226-423C-A999-B81BD4AFEF8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieTicketBooking.Modules.Users.Application", "src\Modules\Users\MovieTicketBooking.Modules.Users.Application\MovieTicketBooking.Modules.Users.Application.csproj", "{82031752-28E7-4D54-8F92-757FDDA0152B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieTicketBooking.Modules.Users.Infrastructure", "src\Modules\Users\MovieTicketBooking.Modules.Users.Infrastructure\MovieTicketBooking.Modules.Users.Infrastructure.csproj", "{95C1ED43-D5FE-475A-B506-C18C58764275}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieTicketBooking.Modules.Users.Presentation", "src\Modules\Users\MovieTicketBooking.Modules.Users.Presentation\MovieTicketBooking.Modules.Users.Presentation.csproj", "{7CCD39C0-B5BF-44A6-9AA9-B85D25579B18}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +67,22 @@ Global
 		{91434ECD-02B6-45B2-B22A-3F6D1F62AB87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91434ECD-02B6-45B2-B22A-3F6D1F62AB87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91434ECD-02B6-45B2-B22A-3F6D1F62AB87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E09A64D-E226-423C-A999-B81BD4AFEF8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E09A64D-E226-423C-A999-B81BD4AFEF8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E09A64D-E226-423C-A999-B81BD4AFEF8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E09A64D-E226-423C-A999-B81BD4AFEF8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82031752-28E7-4D54-8F92-757FDDA0152B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82031752-28E7-4D54-8F92-757FDDA0152B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82031752-28E7-4D54-8F92-757FDDA0152B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82031752-28E7-4D54-8F92-757FDDA0152B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95C1ED43-D5FE-475A-B506-C18C58764275}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95C1ED43-D5FE-475A-B506-C18C58764275}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95C1ED43-D5FE-475A-B506-C18C58764275}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95C1ED43-D5FE-475A-B506-C18C58764275}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CCD39C0-B5BF-44A6-9AA9-B85D25579B18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CCD39C0-B5BF-44A6-9AA9-B85D25579B18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CCD39C0-B5BF-44A6-9AA9-B85D25579B18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CCD39C0-B5BF-44A6-9AA9-B85D25579B18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,5 +95,10 @@ Global
 		{4D26A39B-57C1-44D2-9A0C-715813A59F33} = {83E9DABB-44DD-49C1-A566-F2BC10081A8F}
 		{AC49D116-89CE-4230-A92A-23F769CCC04D} = {83E9DABB-44DD-49C1-A566-F2BC10081A8F}
 		{7463D136-31A1-4B14-8231-73FF23A63B4B} = {83E9DABB-44DD-49C1-A566-F2BC10081A8F}
+		{7B317624-C698-45C2-91A9-5129FB9B2C00} = {E27DFB0E-153B-4353-A298-EB0441B12CBB}
+		{9E09A64D-E226-423C-A999-B81BD4AFEF8D} = {7B317624-C698-45C2-91A9-5129FB9B2C00}
+		{82031752-28E7-4D54-8F92-757FDDA0152B} = {7B317624-C698-45C2-91A9-5129FB9B2C00}
+		{95C1ED43-D5FE-475A-B506-C18C58764275} = {7B317624-C698-45C2-91A9-5129FB9B2C00}
+		{7CCD39C0-B5BF-44A6-9AA9-B85D25579B18} = {7B317624-C698-45C2-91A9-5129FB9B2C00}
 	EndGlobalSection
 EndGlobal
