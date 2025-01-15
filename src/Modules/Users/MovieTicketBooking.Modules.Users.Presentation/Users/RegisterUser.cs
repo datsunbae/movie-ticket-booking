@@ -24,6 +24,7 @@ internal sealed class RegisterUser : IEndpoint
                         result.Value),
                     ApiResults.Problem);
             })
+            .WithOpenApi()
             .AllowAnonymous()
             .WithName(nameof(RegisterUser))
             .WithTags(Tags.Users);

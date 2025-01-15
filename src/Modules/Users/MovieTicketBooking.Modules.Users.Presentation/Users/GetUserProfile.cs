@@ -14,6 +14,7 @@ internal sealed class GetUserProfile : IEndpoint
 
                 return result.Match(Results.Ok, ApiResults.Problem);
             })
+            .WithOpenApi()
             .WithName(nameof(GetUserProfile))
             .WithTags(Tags.Users);
     }

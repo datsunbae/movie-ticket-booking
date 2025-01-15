@@ -7,15 +7,12 @@ using MovieTicketBooking.WebHost.Middleware;
 using MovieTicketBooking.Common.Presentation.Endpoints;
 using RabbitMQ.Client;
 using Serilog;
+using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
+using FluentValidation;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
-
-builder.Services.AddSwaggerGen(options =>
-{
-    options.CustomSchemaIds(t => t.FullName?.Replace("+", "."));
-});
 
 builder.AddLogging();
 
@@ -26,6 +23,8 @@ builder.Configuration.AddModuleConfiguration([
 var databaseConnectionString = builder.Configuration.GetConnectionString("Database")!;
 var cacheConnectionString = builder.Configuration.GetConnectionString("Cache")!;
 var rabbitMqConnectionString = builder.Configuration.GetConnectionString("Queue")!;
+
+builder.Services.AddFluentValidationRulesToSwagger();
 
 builder.Services
     .AddExceptionHandling()
@@ -48,8 +47,7 @@ var keycloakHealthUrl = builder.Configuration.GetValue<string>("KeyCloak:HealthU
 
 var app = builder.Build();
 
-app.UseSwagger();
-app.UseSwaggerUI();
+app.UseApiDocs();
 
 if (app.Environment.IsDevelopment())
 {

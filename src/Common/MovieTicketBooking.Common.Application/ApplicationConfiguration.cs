@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using MovieTicketBooking.Common.Application.Behaviors;
 using System.Reflection;
+using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 
 namespace MovieTicketBooking.Common.Application;
 public static class ApplicationConfiguration
@@ -21,6 +22,8 @@ public static class ApplicationConfiguration
         });
 
         services.AddValidatorsFromAssemblies(moduleAssemblies, includeInternalTypes: true);
+
+     
 
         return services;
     }

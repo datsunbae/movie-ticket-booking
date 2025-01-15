@@ -17,12 +17,15 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 
+
 namespace MovieTicketBooking.Modules.Users.Infrastructure;
 
 public static class UsersModule
 {
     public static IServiceCollection AddUsersModule(this IServiceCollection services, IConfiguration configuration)
     {
+
+
         services.AddDomainEventHandlers();
         services.AddIntegrationEventHandlers();
         

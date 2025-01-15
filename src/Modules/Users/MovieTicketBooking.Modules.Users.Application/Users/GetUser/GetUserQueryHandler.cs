@@ -6,14 +6,11 @@ using MovieTicketBooking.Modules.Users.Domain.Users;
 namespace MovieTicketBooking.Modules.Users.Application.Users.GetUser;
 
 internal sealed class GetUserQueryHandler(
-    IDbConnectionFactory dbConnectionFactory,
-    IUserRepository userRepository
+    IDbConnectionFactory dbConnectionFactory
     ) : IQueryHandler<GetUserQuery, UserResponse>
 {
     public async Task<Result<UserResponse>> Handle(GetUserQuery request, CancellationToken cancellationToken)
     {
-        var a = await userRepository.GetDetailAsync(request.UserId, cancellationToken);
-
         await using var dbConnection = await dbConnectionFactory.OpenConnectionAsync();
 
         const string sql =

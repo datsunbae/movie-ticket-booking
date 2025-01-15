@@ -4,6 +4,9 @@ using MovieTicketBooking.Common.Application;
 using MovieTicketBooking.Common.Infrastructure;
 using MovieTicketBooking.Common.Infrastructure.EventBus;
 using MovieTicketBooking.Modules.Users.Infrastructure;
+using Microsoft.OpenApi.Models;
+using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace MovieTicketBooking.WebHost.Extensions;
 
@@ -19,11 +22,46 @@ public static class ServiceExtensions
 
     internal static IServiceCollection AddOpenApi(this IServiceCollection services)
     {
+
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen(options =>
         {
             options.CustomSchemaIds(t => t.FullName?.Replace("+", "."));
+
+            options.SwaggerDoc("app", new OpenApiInfo { Title = "Movie Ticket Booking", Version = "v1" });
+
+            options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            {
+                In = ParameterLocation.Header,
+                Description = "Please insert JWT with Bearer into field",
+                Name = "Authorization",
+                Type = SecuritySchemeType.Http,
+                Scheme = "bearer"
+            });
+
+            options.AddSecurityRequirement(new OpenApiSecurityRequirement {
+            {
+                new OpenApiSecurityScheme
+                {
+                    Reference = new OpenApiReference
+                    {
+                        Type = ReferenceType.SecurityScheme,
+                        Id = "Bearer"
+                    }
+                },
+                new string[] { }
+            }});
+
+            var dir = new DirectoryInfo(Path.Combine(AppDomain.CurrentDomain.BaseDirectory));
+
+            foreach (var fi in dir.EnumerateFiles("*.xml"))
+            {
+                options.IncludeXmlComments(fi.FullName);
+            }
+
         });
+
+    
 
         return services;
     }

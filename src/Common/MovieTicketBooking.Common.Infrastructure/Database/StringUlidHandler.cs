@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using static Dapper.SqlMapper;
 
-namespace MovieTicketBooking.Common.Infrastructure.Data;
+namespace MovieTicketBooking.Common.Infrastructure.Database;
 public class StringUlidHandler : TypeHandler<Ulid>
 {
     public override Ulid Parse(object value)
@@ -16,4 +16,3 @@ public class StringUlidHandler : TypeHandler<Ulid>
         parameter.Value = value.ToString();
     }
 }
-
