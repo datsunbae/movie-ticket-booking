@@ -1,23 +1,28 @@
-using MovieTicketBooking.Common.Domain;
-using MovieTicketBooking.Common.Infrastructure.Serialization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using MovieTicketBooking.Common.Domain;
+using MovieTicketBooking.Common.Infrastructure.Serialization;
 using Newtonsoft.Json;
+using System.Data.Common;
 
 namespace MovieTicketBooking.Common.Infrastructure.Outbox;
 
-public sealed class InsertOutboxMessagesInterceptor : SaveChangesInterceptor
+public sealed class InsertOutboxMessagesInterceptor : DbTransactionInterceptor
 {
-    public override async ValueTask<InterceptionResult<int>> SavingChangesAsync(
-        DbContextEventData eventData, 
-        InterceptionResult<int> result,
-        CancellationToken cancellationToken = new CancellationToken())
+    public override async ValueTask<InterceptionResult> TransactionCommittingAsync(DbTransaction transaction, TransactionEventData eventData, InterceptionResult result, CancellationToken cancellationToken = default)
     {
-        if(eventData.Context is not null) 
-            InsertOutboxMessages(eventData.Context);
-        
-        return await base.SavingChangesAsync(eventData, result, cancellationToken);
+        var dbContext = eventData.Context;
+
+        if (dbContext is not null)
+        {
+            InsertOutboxMessages(dbContext);
+
+            await dbContext.SaveChangesAsync(cancellationToken);
+        }
+
+        return await base.TransactionCommittingAsync(transaction, eventData, result, cancellationToken);
     }
+   
     private static void InsertOutboxMessages(
         DbContext context)
     {
@@ -39,7 +44,7 @@ public sealed class InsertOutboxMessagesInterceptor : SaveChangesInterceptor
                 OccurredAtUtc = domainEvent.OccurredAtUtc,
             })
             .ToList();
-        
+
         context.Set<OutboxMessage>().AddRange(outboxMessages);
     }
 }

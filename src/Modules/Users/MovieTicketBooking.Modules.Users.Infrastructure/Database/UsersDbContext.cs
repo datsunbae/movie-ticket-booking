@@ -10,6 +10,21 @@ public class UsersDbContext(DbContextOptions<UsersDbContext> options)
 {
     internal DbSet<User> Users => Set<User>();
 
+    public Task BeginTransactionAsync(CancellationToken cancellationToken = default)
+    {
+        return this.Database.BeginTransactionAsync(cancellationToken);
+    }
+
+    public Task CommitTransactionAsync(CancellationToken cancellationToken = default)
+    {
+        return this.Database.CommitTransactionAsync(cancellationToken);
+    }
+
+    public Task RollbackTransactionAsync(CancellationToken cancellationToken = default)
+    {
+        return this.Database.RollbackTransactionAsync(cancellationToken);
+    }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.HasDefaultSchema(Schemas.Users);

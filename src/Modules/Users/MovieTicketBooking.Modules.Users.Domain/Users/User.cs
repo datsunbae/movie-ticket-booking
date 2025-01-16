@@ -27,6 +27,8 @@ public class User : Entity
             IdentityId = identityId
         };
 
+        user.RaiseDomainEvent(new UserRegisteredDomainEvent(user.Id));
+
         return user;
     }
 }

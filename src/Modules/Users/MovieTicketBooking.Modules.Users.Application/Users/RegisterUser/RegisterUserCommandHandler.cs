@@ -21,12 +21,22 @@ internal sealed class RegisterUserCommandHandler(
                 request.LastName), cancellationToken);
         if (result.IsFailure)
             return Result.Failure<UserResponse>(result.Error);
-        
+
         var user = User.Create(request.Email, request.FirstName, request.LastName, result.Value);
 
         userRepository.Insert(user);
 
-        await unitOfWork.SaveChangesAsync(cancellationToken);
+        try
+        {
+            await unitOfWork.BeginTransactionAsync(cancellationToken);
+            await unitOfWork.SaveChangesAsync(cancellationToken);        
+            await unitOfWork.CommitTransactionAsync(cancellationToken);
+        }
+        catch (Exception)
+        {
+            await unitOfWork.RollbackTransactionAsync(cancellationToken);
+            throw;
+        }
 
         return (UserResponse)user;
     }
