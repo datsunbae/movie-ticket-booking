@@ -7,8 +7,7 @@ namespace MovieTicketBooking.Modules.Users.Application.Users.RegisterUser;
 
 internal sealed class RegisterUserCommandHandler(
     IIdentityProviderService identityProvider,
-    IUserRepository userRepository,
-    IUnitOfWork unitOfWork)
+    IUserRepository userRepository)
     : ICommandHandler<RegisterUserCommand, UserResponse>
 {
     public async Task<Result<UserResponse>> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
@@ -25,18 +24,6 @@ internal sealed class RegisterUserCommandHandler(
         var user = User.Create(request.Email, request.FirstName, request.LastName, result.Value);
 
         userRepository.Insert(user);
-
-        try
-        {
-            await unitOfWork.BeginTransactionAsync(cancellationToken);
-            await unitOfWork.SaveChangesAsync(cancellationToken);        
-            await unitOfWork.CommitTransactionAsync(cancellationToken);
-        }
-        catch (Exception)
-        {
-            await unitOfWork.RollbackTransactionAsync(cancellationToken);
-            throw;
-        }
 
         return (UserResponse)user;
     }

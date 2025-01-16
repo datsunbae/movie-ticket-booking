@@ -1,9 +1,8 @@
+using MovieTicketBooking.Common.Application.Abstractions.Data;
+
 namespace MovieTicketBooking.Modules.Users.Application.Abstractions.Data;
 
-public interface IUnitOfWork
+public interface IUnitOfWork : IBaseUnitOfWork
 {
-    Task<int> SaveChangesAsync(CancellationToken cancellationToken);
-    Task BeginTransactionAsync(CancellationToken cancellationToken = default);
-    Task CommitTransactionAsync(CancellationToken cancellationToken = default);
-    Task RollbackTransactionAsync(CancellationToken cancellationToken = default);
+
 }

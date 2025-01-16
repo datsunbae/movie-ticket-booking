@@ -2,7 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using MovieTicketBooking.Common.Application.Behaviors;
 using System.Reflection;
-using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 
 namespace MovieTicketBooking.Common.Application;
 public static class ApplicationConfiguration
@@ -11,7 +10,6 @@ public static class ApplicationConfiguration
         this IServiceCollection services,
         Assembly[] moduleAssemblies)
     {
-        if (!moduleAssemblies.Any()) return services;
         services.AddMediatR(config =>
         {
             config.RegisterServicesFromAssemblies(moduleAssemblies);
@@ -22,8 +20,6 @@ public static class ApplicationConfiguration
         });
 
         services.AddValidatorsFromAssemblies(moduleAssemblies, includeInternalTypes: true);
-
-     
 
         return services;
     }

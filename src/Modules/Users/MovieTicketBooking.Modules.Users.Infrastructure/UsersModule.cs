@@ -16,6 +16,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
+using MovieTicketBooking.Modules.Users.Application;
 
 
 namespace MovieTicketBooking.Modules.Users.Infrastructure;
@@ -24,11 +25,11 @@ public static class UsersModule
 {
     public static IServiceCollection AddUsersModule(this IServiceCollection services, IConfiguration configuration)
     {
-
+        services.AddApplication();
 
         services.AddDomainEventHandlers();
         services.AddIntegrationEventHandlers();
-        
+
         services
             .AddInfrastructure(configuration)
             .AddEndpoints(Presentation.AssemblyReference.Assembly);
@@ -61,7 +62,7 @@ public static class UsersModule
 
         return services;
     }
-    
+
     private static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration) =>
         services
             .AddDbContext<UsersDbContext>(Postgres.StandardOptions(configuration, Schemas.Users))
@@ -72,12 +73,12 @@ public static class UsersModule
         services
             .Configure<OutboxOptions>(configuration.GetSection("Users:Outbox"))
             .ConfigureOptions<ConfigureProcessOutboxJob>();
-    
+
     private static IServiceCollection AddInbox(this IServiceCollection services, IConfiguration configuration) =>
         services
             .Configure<InboxOptions>(configuration.GetSection("Users:Inbox"))
             .ConfigureOptions<ConfigureProcessInboxJob>();
-    
+
     public static void ConfigureConsumers(IRegistrationConfigurator registrationConfigurator, string instanceId) =>
         Presentation.AssemblyReference.Assembly
             .GetTypes()
@@ -90,11 +91,11 @@ public static class UsersModule
                     .Single(@interface => @interface.IsGenericType)
                     .GetGenericArguments()
                     .Single();
-                
+
                 registrationConfigurator
                     .AddConsumer(typeof(IntegrationEventConsumer<>)
                     .MakeGenericType(integrationEventType))
-                    .Endpoint(c=>c.InstanceId = instanceId);
+                    .Endpoint(c => c.InstanceId = instanceId);
             });
 
     private static void AddDomainEventHandlers(this IServiceCollection services)
@@ -119,7 +120,7 @@ public static class UsersModule
             services.Decorate(domainEventHandler, closedIdempotentHandlerType);
         }
     }
-    
+
     private static void AddIntegrationEventHandlers(this IServiceCollection services) =>
         Presentation.AssemblyReference.Assembly
             .GetTypes()
@@ -136,7 +137,7 @@ public static class UsersModule
                     .Single();
 
                 var closedIdempotentHandlerType = typeof(IdempotentIntegrationEventHandler<>).MakeGenericType(integrationEventType);
-                
+
                 services.Decorate(integrationEventHandlerType, closedIdempotentHandlerType);
             });
 }

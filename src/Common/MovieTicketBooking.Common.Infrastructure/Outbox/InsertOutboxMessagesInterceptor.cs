@@ -22,7 +22,7 @@ public sealed class InsertOutboxMessagesInterceptor : DbTransactionInterceptor
 
         return await base.TransactionCommittingAsync(transaction, eventData, result, cancellationToken);
     }
-   
+       
     private static void InsertOutboxMessages(
         DbContext context)
     {
