@@ -7,6 +7,9 @@ using MovieTicketBooking.Modules.Users.Infrastructure;
 using Microsoft.OpenApi.Models;
 using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 using Swashbuckle.AspNetCore.Swagger;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using System.Reflection;
 
 namespace MovieTicketBooking.WebHost.Extensions;
 
@@ -22,8 +25,8 @@ public static class ServiceExtensions
 
     internal static IServiceCollection AddOpenApi(this IServiceCollection services)
     {
-
         services.AddEndpointsApiExplorer();
+
         services.AddSwaggerGen(options =>
         {
             options.CustomSchemaIds(t => t.FullName?.Replace("+", "."));
@@ -51,17 +54,15 @@ public static class ServiceExtensions
                 },
                 new string[] { }
             }});
+            //var xmlPath = Path.Combine(Directory.GetCurrentDirectory(), $"{Assembly.GetExecutingAssembly().GetName().Name}.xml");
+            //options.IncludeXmlComments(xmlPath);
 
-            var dir = new DirectoryInfo(Path.Combine(AppDomain.CurrentDomain.BaseDirectory));
-
+            var dir = new DirectoryInfo(Path.Combine(Directory.GetCurrentDirectory()));
             foreach (var fi in dir.EnumerateFiles("*.xml"))
             {
                 options.IncludeXmlComments(fi.FullName);
             }
-
         });
-
-    
 
         return services;
     }
@@ -74,10 +75,7 @@ public static class ServiceExtensions
     {
         var rabbitMqConnectionString = configuration.GetValue<string>("ConnectionStrings:Queue")!;
 
-        services
-            .AddApplication([
-                Modules.Users.Application.AssemblyReference.Assembly,
-            ])
+        services            
             .AddInfrastructure(
                 DiagnosticsConfig.ServiceName,
                 [

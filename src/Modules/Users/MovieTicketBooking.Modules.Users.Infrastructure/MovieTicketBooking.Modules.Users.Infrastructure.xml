@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MovieTicketBooking.Modules.Users.Infrastructure</name>
+    </assembly>
+    <members>
+        <member name="T:MovieTicketBooking.Modules.Users.Infrastructure.Migrations.InitUser">
+            <inheritdoc />
+        </member>
+        <member name="M:MovieTicketBooking.Modules.Users.Infrastructure.Migrations.InitUser.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:MovieTicketBooking.Modules.Users.Infrastructure.Migrations.InitUser.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:MovieTicketBooking.Modules.Users.Infrastructure.Migrations.InitUser.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

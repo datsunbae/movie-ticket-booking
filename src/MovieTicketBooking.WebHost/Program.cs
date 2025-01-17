@@ -9,6 +9,7 @@ using RabbitMQ.Client;
 using Serilog;
 using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 using FluentValidation;
+using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,8 +25,6 @@ var databaseConnectionString = builder.Configuration.GetConnectionString("Databa
 var cacheConnectionString = builder.Configuration.GetConnectionString("Cache")!;
 var rabbitMqConnectionString = builder.Configuration.GetConnectionString("Queue")!;
 
-builder.Services.AddFluentValidationRulesToSwagger();
-
 builder.Services
     .AddExceptionHandling()
     .AddOpenApi();
@@ -35,6 +34,14 @@ builder.Services
         builder.Configuration,
         databaseConnectionString,
         cacheConnectionString);
+
+builder.Services.AddFluentValidationAutoValidation();
+
+builder.Services.AddFluentValidationClientsideAdapters();
+
+builder.Services.AddValidatorsFromAssemblyContaining<Program>();
+
+builder.Services.AddFluentValidationRulesToSwagger();
 
 var keycloakHealthUrl = builder.Configuration.GetValue<string>("KeyCloak:HealthUrl")!;
 

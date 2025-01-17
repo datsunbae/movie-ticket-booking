@@ -11,14 +11,14 @@ public static class ApplicationConfiguration
     {
         var assembly = typeof(ApplicationConfiguration).GetTypeInfo().Assembly;
 
+        Common.Application.ApplicationConfiguration.AddApplication(services, assembly);
+
         services.AddMediatR(config =>
         {
             config.RegisterServicesFromAssemblies(assembly);
 
             config.AddOpenBehavior(typeof(TransactionalPipelineBehavior<,>));
         });
-
-        services.AddValidatorsFromAssemblies([assembly], includeInternalTypes: true);
 
         return services;
     }

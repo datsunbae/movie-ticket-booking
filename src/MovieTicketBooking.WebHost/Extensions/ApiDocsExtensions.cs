@@ -1,4 +1,6 @@
 ﻿namespace MovieTicketBooking.WebHost.Extensions;
+
+using MassTransit.Internals;
 using Scalar.AspNetCore;
 
 internal static class ApiDocsExtensions
@@ -16,6 +18,7 @@ internal static class ApiDocsExtensions
                 .WithTheme(ScalarTheme.BluePlanet)
                 .WithDefaultHttpClient(ScalarTarget.JavaScript, ScalarClient.Axios)
                 .WithLayout(ScalarLayout.Modern);
+
             options.EndpointPathPrefix = "api-docs/{documentName}";
         });
 

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using MovieTicketBooking.Modules.Users.Application.Users.RegisterUser;
 
 namespace MovieTicketBooking.Modules.Users.Presentation.Users;
@@ -7,16 +8,12 @@ internal sealed class RegisterUser : IEndpoint
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
         app.MapPost("api/users/register", async (
-                Request request, 
+                [FromBody] RegisterUserCommand request, 
                 ISender sender, 
                 HttpContext context, 
                 LinkGenerator linkGenerator) =>
             {
-                var result = await sender.Send(new RegisterUserCommand(
-                    request.Email,
-                    request.Password,
-                    request.FirstName,
-                    request.LastName));
+                var result = await sender.Send(request);
 
                 return result.Match(
                     () => Results.Created(
@@ -29,6 +26,4 @@ internal sealed class RegisterUser : IEndpoint
             .WithName(nameof(RegisterUser))
             .WithTags(Tags.Users);
     }
-
-    internal sealed record Request(string Email, string Password, string FirstName, string LastName);
 }
