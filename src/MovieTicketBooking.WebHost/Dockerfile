@@ -18,6 +18,10 @@ COPY ["src/Common/MovieTicketBooking.Common.Application/MovieTicketBooking.Commo
 COPY ["src/Common/MovieTicketBooking.Common.Domain/MovieTicketBooking.Common.Domain.csproj", "src/Common/MovieTicketBooking.Common.Domain/"]
 COPY ["src/Common/MovieTicketBooking.Common.Infrastructure/MovieTicketBooking.Common.Infrastructure.csproj", "src/Common/MovieTicketBooking.Common.Infrastructure/"]
 COPY ["src/Common/MovieTicketBooking.Common.Presentation/MovieTicketBooking.Common.Presentation.csproj", "src/Common/MovieTicketBooking.Common.Presentation/"]
+COPY ["src/Modules/Users/MovieTicketBooking.Modules.Users.Infrastructure/MovieTicketBooking.Modules.Users.Infrastructure.csproj", "src/Modules/Users/MovieTicketBooking.Modules.Users.Infrastructure/"]
+COPY ["src/Modules/Users/MovieTicketBooking.Modules.Users.Application/MovieTicketBooking.Modules.Users.Application.csproj", "src/Modules/Users/MovieTicketBooking.Modules.Users.Application/"]
+COPY ["src/Modules/Users/MovieTicketBooking.Modules.Users.Domain/MovieTicketBooking.Modules.Users.Domain.csproj", "src/Modules/Users/MovieTicketBooking.Modules.Users.Domain/"]
+COPY ["src/Modules/Users/MovieTicketBooking.Modules.Users.Presentation/MovieTicketBooking.Modules.Users.Presentation.csproj", "src/Modules/Users/MovieTicketBooking.Modules.Users.Presentation/"]
 RUN dotnet restore "./src/MovieTicketBooking.WebHost/MovieTicketBooking.WebHost.csproj"
 COPY . .
 WORKDIR "/src/src/MovieTicketBooking.WebHost"
